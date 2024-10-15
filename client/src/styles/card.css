@@ -1,0 +1,32 @@
+.container-basic {
+    display: flex;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    justify-content: space-around;
+    padding: 20px 6px;
+}
+
+.right-sub-container {
+    border: 2px solid grey;
+    border-radius: 15px;
+    width: auto;
+    height: auto;
+    padding: 4px;
+}
+.left-sub-container {
+    width: 50%;
+}
+/* .right-sub-container img { */
+   
+        /* object-fit: contain; */
+    
+        /* object-fit: cover;        */
+/* } */
+
+ul > li{
+    padding: 3px 0;
+}
+
+.title {
+    font-weight:bold;
+}
