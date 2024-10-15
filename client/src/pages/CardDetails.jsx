@@ -44,7 +44,7 @@ export default function OutlinedCard() {
       {isError !== " " && <h2>{isError}</h2>}
 
       <Card variant="outlined">
-        const card = (
+        
         <Box sx={{ m: 1 }}>
           <CardContent>
             <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -136,7 +136,7 @@ export default function OutlinedCard() {
             <Button size="small">Learn More</Button>
           </CardActions>
         </Box>
-        );
+        
       </Card>
     </Box>
   );

@@ -11,7 +11,6 @@
 
 // import { useSpring, animated } from "@react-spring/web";
 
-
 // // const ShowTreeComponent = (props) => {
 // //   const {children, activeTree, selectedTree } = props;
 
@@ -85,18 +84,14 @@
 //       { id: "6.1.3", label: "sublocation3" },
 //     ],
 //   },
-  
-  
-  
- 
-// ];
 
+// ];
 
 // // const [activeTree, setActiveTree] = useState();
 
 // // const handleSelect=(event, selectedTree)=> {
 // //           setActiveTree(selectedTree);
-// // } 
+// // }
 
 // function TransitionComponent(props) {
 //   const style = useSpring({
@@ -155,7 +150,7 @@
 //             }}
 //             items={MUI_X_PRODUCTS}
 //             onItemClick={handleItemClick}
-            
+
 //           />
 //           {/* <FileExplorer /> */}
 //         </Box>
@@ -168,7 +163,6 @@
 //     </Box>
 //   );
 // }
-
 
 // import * as React from "react";
 // import Box from "@mui/material/Box";
@@ -302,37 +296,21 @@ import Home from "./Home";
 // Tree structure: Locations -> Sublocations -> Items
 const MUI_X_PRODUCTS = [
   {
-    id: "1.0",
-    label: "location1",
+    id: "1",
+    label: "Torres, Rowland and Peters Warehouse",
     children: [
       {
         id: "1.1",
-        label: "sublocation1",
+        label: "Western Center House",
         children: [
-          { id: "1.1.1", label: "item1" },
-          { id: "1.1.2", label: "item2" },
-        ],
-      },
-      {
-        id: "1.2",
-        label: "sublocation2",
-        children: [
-          { id: "1.2.1", label: "item1" },
-          { id: "1.2.2", label: "item2" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "2.0",
-    label: "location2",
-    children: [
-      {
-        id: "2.1",
-        label: "sublocation1",
-        children: [
-          { id: "2.1.1", label: "item1" },
-          { id: "2.1.2", label: "item2" },
+          {
+            id: "1.1.1",
+            label: "Sector 60",
+            children: [
+              { id: "1.1.1.1", label: "Drill by Bosch" },
+              { id: "2.1.1.1", label: "Black & Decker Saw Series C" },
+            ],
+          },
         ],
       },
     ],
@@ -355,25 +333,25 @@ function TransitionComponent(props) {
 }
 
 export default function Test() {
-  const [selectedItem, setSelectedItem] = React.useState(null);  // State to store selected item
+  const [selectedItem, setSelectedItem] = React.useState(null); // State to store selected item
 
   // Handle item click: Perform actions only for 'items'
-  const handleItemClick = ( event, node, label) => {
+  const handleItemClick = (event, node, label) => {
     console.log(node);
     // console.log(label);
     // console.log(event.innerHTML);
     console.log(node.length);
-    if (node.length == 5) {
+    if (node.length == 7) {
       // If node has no children, it's an item (leaf node)
-      setSelectedItem(node);  // Store selected item label in state
+      setSelectedItem(node); // Store selected item label in state
     } else {
-      setSelectedItem(null);  // If it's a location or sublocation, reset selection
+      setSelectedItem(null); // If it's a location or sublocation, reset selection
     }
   };
 
   return (
     <>
-    {/* <div className="test" style={{background: "yellow"}}>
+      {/* <div className="test" style={{background: "yellow"}}>
     <RichTreeView
             defaultExpandedItems={["1.0"]}
             slotProps={{
@@ -384,39 +362,59 @@ export default function Test() {
             onItemClick={( event,node) => handleItemClick(event, node)}
           />
     </div> */}
-    <Box sx={{ width: "100vw", height:"100vh" }}>
-      <Stack spacing={0} direction="row">
-        <Box sx={{ width: 1 / 5, height: "100vh", bgcolor: "#000", pt: 3, pl: 2, overflow: "hidden",
-          overflowY: "scroll"   }}>
-          <Typography variant="h6" noWrap component="div" sx={{ pl: 2, pb: 3 }}>
-            Warehouse Inventory
-          </Typography>
-
-         
-          <RichTreeView
-            defaultExpandedItems={["1.0"]}
-            slotProps={{
-              item: { slots: { groupTransition: TransitionComponent } },
+      <Box sx={{ width: "100vw", height: "100vh" }}>
+        <Stack spacing={0} direction="row">
+          <Box
+            sx={{
+              width: 1 / 5,
+              height: "100vh",
+              bgcolor: "#000",
+              pt: 3,
+              pl: 2,
+              overflow: "hidden",
+              overflowY: "scroll",
             }}
-            items={MUI_X_PRODUCTS}
-            
-            onItemClick={( event,node) => handleItemClick(event, node)}
-          />
-        </Box>
+          >
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ pl: 2, pb: 3 }}
+            >
+              Warehouse Inventory
+            </Typography>
 
-       
-        <Box sx={{p:0, width: 4 / 5, padding:0, height: "100vh", bgcolor: "#fff" , overflow: "hidden",
-          overflowY: "scroll"  }}>
-          <PrimarySearchAppBar />
-          
-         
-          {selectedItem ? <CardDetails /> : (
-            <Typography variant="h5">Please select an item</Typography>
-          )}
-       
-        </Box>
-      </Stack>
-    </Box>
+            <RichTreeView
+              defaultExpandedItems={["1.0"]}
+              slotProps={{
+                item: { slots: { groupTransition: TransitionComponent } },
+              }}
+              items={MUI_X_PRODUCTS}
+              onItemClick={(event, node) => handleItemClick(event, node)}
+            />
+          </Box>
+
+          <Box
+            sx={{
+              p: 0,
+              width: 4 / 5,
+              padding: 0,
+              height: "100vh",
+              bgcolor: "#fff",
+              overflow: "hidden",
+              overflowY: "scroll",
+            }}
+          >
+            <PrimarySearchAppBar />
+
+            {selectedItem ? (
+              <CardDetails />
+            ) : (
+              <Typography variant="h5">Please select an item</Typography>
+            )}
+          </Box>
+        </Stack>
+      </Box>
     </>
   );
 }

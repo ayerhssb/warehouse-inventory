@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import { handleError, handleSuccess } from '../utils';
+import '../styles/loginstyle.css';
 
 function Login() {
 
@@ -82,7 +83,7 @@ function Login() {
                     />
                 </div>
                 <button type='submit'>Login</button>
-                <span>Does't have an account ?
+                <span>Don't have an account?   
                     <Link to="/signup">Signup</Link>
                 </span>
             </form>
